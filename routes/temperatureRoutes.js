@@ -65,6 +65,37 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// ✅ GET rata-rata suhu
+router.get("/average", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT AVG(temperature) AS average FROM temperatures");
+    res.json({ average: parseFloat(result.rows[0].average).toFixed(2) });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// ✅ PATCH randomize suhu (update semua suhu dengan angka acak)
+router.patch("/randomize", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT id FROM temperatures");
+    for (const row of result.rows) {
+      const randomTemp = (Math.random() * (35 - 20) + 20).toFixed(2); // acak 20–35°C
+      await pool.query("UPDATE temperatures SET temperature = $1 WHERE id = $2", [randomTemp, row.id]);
+    }
+    const updated = await pool.query("SELECT * FROM temperatures ORDER BY id ASC");
+    res.json({
+      message: "Suhu berhasil diacak ulang",
+      data: updated.rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
 // ✅ DELETE hapus data
 router.delete("/:id", async (req, res) => {
   try {

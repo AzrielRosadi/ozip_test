@@ -1,0 +1,116 @@
+{
+  "info": {
+    "name": "Monitoring Suhu API Collection",
+    "_postman_id": "2f1a64b1-63e9-4e2e-9b6e-d847bdfb5629",
+    "description": "Koleksi Postman untuk menguji API Node.js monitoring suhu (GET, POST, PUT, DELETE, AVERAGE, RANDOMIZE)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET - Semua Data Suhu",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/temperatures",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "temperatures"]
+        }
+      }
+    },
+    {
+      "name": "GET - Data Suhu by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/temperatures/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "temperatures", "1"]
+        }
+      }
+    },
+    {
+      "name": "POST - Tambah Data Suhu",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"Bali\",\n  \"temperature\": 29.5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/temperatures",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "temperatures"]
+        }
+      }
+    },
+    {
+      "name": "PUT - Update Data Suhu",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"Jakarta\",\n  \"temperature\": 31.2\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/temperatures/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "temperatures", "1"]
+        }
+      }
+    },
+    {
+      "name": "DELETE - Hapus Data Suhu",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/temperatures/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "temperatures", "1"]
+        }
+      }
+    },
+    {
+      "name": "GET - Rata-rata Suhu",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/temperatures/average",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "temperatures", "average"]
+        }
+      }
+    },
+    {
+      "name": "PATCH - Randomize Suhu",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/temperatures/randomize",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "temperatures", "randomize"]
+        }
+      }
+    }
+  ]
+}
